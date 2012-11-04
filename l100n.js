@@ -1,5 +1,5 @@
 /*
- * l100n 1.0 - unusual JavaScript library for pure-client localization
+ * l100n 1.0 - unusual JavaScript library for pure client-side localization by css-selectors
  *
  * Full description in Russian: http://vas3k.ru/dev/l100n
  *
