@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Localization demo</title>
-  <meta name="description" content="Localization demo">
+  <meta name="description" content="l100n demo">
   <meta name="author" content="vas3k.ru">
   <link rel="stylesheet" href="styles.css?v=1.0">
   <!--[if lt IE 9]>
@@ -112,13 +112,13 @@
 <body>
     <div id="demo_all_selector" class="l10n_selector">
         Общий переключатель: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
-        <small>Метод: l100n.localize_all_pages(&lt;locale>)</small>
+        <small>Метод: l100n.localize_all_pages([&lt;locale>])</small>
     </div>
 
     <div id="demo1">
         <div id="demo1_selector" class="l10n_selector">
             Язык демо 1: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
-            <small>Метод: l100n.localize_page("demo1", &lt;locale>)</small>
+            <small>Метод: l100n.localize_page("demo1", [&lt;locale>])</small>
         </div>
 
         <h2 id="demo1_header">Demo 1 header</h2>
@@ -131,7 +131,7 @@
 
         <div id="demo_small_selector" class="l10n_selector">
             Локализация одного элемента: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
-            <small>Метод: l100n.localize("demo1-small", null, &lt;locale>)</small>
+            <small>Метод: l100n.localize("demo-small", [[null,] &lt;locale>])</small>
         </div>
 
         <div id="demo-small">I am a small crocodile</div>
@@ -140,7 +140,7 @@
     <div id="demo2">
         <div id="demo2_selector" class="l10n_selector">
             Язык демо 2: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
-            <small>Метод: l100n.localize_page("demo2", &lt;locale>)</small>
+            <small>Метод: l100n.localize_page("demo2", [&lt;locale>])</small>
         </div>
 
         <h3 id="demo2_header1">Demo 2 header</h3>
