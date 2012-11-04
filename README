@@ -24,3 +24,5 @@ l100n.add_page("demo-small", demo_small_l10n_strings);
 l100n.localize_page("demo-small", "en");            // Localize all page
 l100n.localize("demo-small-string", null, "en");    // Localize one string by selector
 l100n.localize_all_pages("en");                     // Localize all known pages
+
+Описание на русском языке: http://vas3k.ru/dev/l100n
