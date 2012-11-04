@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Localization demo</title>
+  <meta name="description" content="Localization demo">
+  <meta name="author" content="vas3k.ru">
+  <link rel="stylesheet" href="styles.css?v=1.0">
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+  <script src="l100n.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    l100n.default_locale = "en";
+    l100n.locale = "ru";
+
+    var demo1_l10n_strings = {
+        "l10n_demo1_header": {
+            selector: "#demo1_header",
+            en: "Demo 1 header",
+            ru: "Заголовок демо 1"
+        },
+        "l10n_demo1_body": {
+            selector: ".demo_body",
+            en: "I am a demo body, I am very cool",
+            ru: "Я тело демки, локализированное с помощью l100n.js"
+        }        
+    };
+    l100n.add_page("demo1", demo1_l10n_strings);
+
+    var demo_small_l10n_strings = {
+        "demo-small": {
+            selector: "#demo-small",
+            en: "I am a small cocorodile",
+            ru: "Я маленький крокодил"
+        }
+    };
+    l100n.add_page("demo-small", demo_small_l10n_strings);
+
+    var demo2_l10n_strings = {
+        "l10n_demo2_headers": {
+            selector: "#demo2_header1, #demo2_header2",
+            en: "Demo 2 header",
+            ru: "Заголовок демо 2"
+        },
+        "l10n_demo2_body": {
+            selector: "#demo2 p",
+            en: "I am a demo 2 paragraph",
+            ru: "Я параграф из демки 2"
+        }
+    };
+    l100n.add_page("demo2", demo2_l10n_strings);
+
+    $(function() {
+        // All pages switcher
+        $("#demo_all_selector .en").click(function() {
+            $(".ru").removeClass("active");
+            $(".en").addClass("active");
+            l100n.localize_all_pages("en");
+        });
+
+        $("#demo_all_selector .ru").click(function() {
+            $(".en").removeClass("active");
+            $(".ru").addClass("active");
+            l100n.localize_all_pages("ru");
+        });
+
+        // Demo 1 switcher
+        $("#demo1_selector .en").click(function() {
+            $("#demo1_selector .ru").removeClass("active");
+            $(this).addClass("active");
+            l100n.localize_page("demo1", "en");
+        });
+
+        $("#demo1_selector .ru").click(function() {
+            $("#demo1_selector  .en").removeClass("active");
+            $(this).addClass("active");
+            l100n.localize_page("demo1", "ru");
+        });
+
+        // Small demo switcher
+        $("#demo_small_selector .en").click(function() {
+            $("#demo_small_selector .ru").removeClass("active");
+            $(this).addClass("active");
+            l100n.localize("demo-small", null, "en");
+        });
+
+        $("#demo_small_selector .ru").click(function() {
+            $("#demo_small_selector  .en").removeClass("active");
+            $(this).addClass("active");
+            l100n.localize("demo-small", null, "ru");
+        });
+
+        // Demo 2 switcher
+        $("#demo2_selector .en").click(function() {
+            $("#demo2_selector .ru").removeClass("active");
+            $(this).addClass("active");
+            l100n.localize_page("demo2", "en");
+        });
+
+        $("#demo2_selector .ru").click(function() {
+            $("#demo2_selector  .en").removeClass("active");
+            $(this).addClass("active");
+            l100n.localize_page("demo2", "ru");
+        });
+
+    });
+  </script>
+</head>
+<body>
+    <div id="demo_all_selector" class="l10n_selector">
+        Общий переключатель: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
+        <small>Метод: l100n.localize_all_pages(&lt;locale>)</small>
+    </div>
+
+    <div id="demo1">
+        <div id="demo1_selector" class="l10n_selector">
+            Язык демо 1: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
+            <small>Метод: l100n.localize_page("demo1", &lt;locale>)</small>
+        </div>
+
+        <h2 id="demo1_header">Demo 1 header</h2>
+
+        <span class="demo_body">
+            I am a demo body, I am very cool
+        </span>
+
+        <hr/>
+
+        <div id="demo_small_selector" class="l10n_selector">
+            Локализация одного элемента: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
+            <small>Метод: l100n.localize("demo1-small", null, &lt;locale>)</small>
+        </div>
+
+        <div id="demo-small">I am a small crocodile</div>
+    </div>
+
+    <div id="demo2">
+        <div id="demo2_selector" class="l10n_selector">
+            Язык демо 2: <span class="en active">EN</span>&nbsp;/&nbsp;<span class="ru">RU</span><br/>
+            <small>Метод: l100n.localize_page("demo2", &lt;locale>)</small>
+        </div>
+
+        <h3 id="demo2_header1">Demo 2 header</h3>
+        <h4 id="demo2_header2">Demo 2 header</h4>
+
+        <p>I am a demo 2 paragraph</p>
+        <p>I am a demo 2 paragraph</p>
+        <p>I am a demo 2 paragraph</p>
+    </div>
+</body>
+</html>
