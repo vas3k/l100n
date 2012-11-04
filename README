@@ -1,0 +1,26 @@
+l100n - unusual JavaScript library for pure client-side localization by css-selectors
+
+Popular localization libraries are so "traditional". They are copying "big server brothers" and make localization in the old way. Wrap strings in _(function), import translation files and localize strings one by one. It's good then you're server and keeps your code clean, but in JavaScript it is soooo old-fag.
+
+In JavaScript we have full access to DOM at all. We do not want to modify our HTML templates, we want pure-javascript localization engine working with css-selectors and jquery. This is l100n.
+
+Example from demo.html:
+
+// Set defaults
+l100n.default_locale = "en";
+l100n.locale = "ru";
+
+// Set localizations strings
+var demo_small_l10n_strings = {
+    "demo-small-string": {
+        selector: "#demo-small",
+        en: "I am a small cocorodile",
+        ru: "Я маленький крокодил"
+    }
+};
+l100n.add_page("demo-small", demo_small_l10n_strings);
+
+// Magic!
+l100n.localize_page("demo-small", "en");            // Localize all page
+l100n.localize("demo-small-string", null, "en");    // Localize one string by selector
+l100n.localize_all_pages("en");                     // Localize all known pages
