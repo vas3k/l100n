@@ -11,6 +11,7 @@
 l100n = {
 	locale: "ru",                   // Current locale codename
 	default_locale: "ru",           // Default (fallback) locale codename
+    always_localize: [],            // Page codenames which are localizes at each localize_page call
 	pages: {
         "test-page": {              // Page codename
             "test-string": {        // String codename
@@ -20,6 +21,14 @@ l100n = {
             }
         }
 	},
+
+
+    /**
+     * Returns user browser locale (two-digits code)
+     */
+    get_browser_locale : function() {
+        return (navigator.language || navigator.systemLanguage || navigator.browserLanguage || navigator.userLanguage || this.default_locale).substr(0, 2).toLowerCase();
+    },
 
     /**
      * Add page localizationn dictionary to localization object
@@ -89,15 +98,26 @@ l100n = {
      * Localize entire page by page codename
      * @param page (required) - page codename
      * @param custom_locale (optional) - custom locale codename
+     * @param no_always (optional) - if true, ignore always_localize pages
      */
-    localize_page: function(page, custom_locale) {
+    localize_page: function(page, custom_locale, no_always) {
         if (!page) return false;
         var loc = custom_locale || this.locale || this.default_locale;
 
         var strings = this.pages[page];
         for (var string_id in strings) {
             var string = strings[string_id];
-            $(string.selector).html(string[loc]);
+            var l10n_string = string[loc];
+            if (!l10n_string) {
+                l10n_string = string[this.default_locale];
+            }
+            $(string.selector).html(l10n_string);    
+        }
+
+        if (!no_always) {
+            for (var page in this.always_localize) {
+                this.localize_page(this.always_localize[page], loc, true);
+            }
         }
 
         return true;
@@ -111,7 +131,11 @@ l100n = {
         var loc = custom_locale || this.locale || this.default_locale;
 
         for (var page_name in this.pages) {
-            this.localize_page(page_name, loc);
+            this.localize_page(page_name, loc, true);
+        }
+
+        for (var page in this.always_localize) {
+            this.localize_page(this.always_localize[page], loc, true);
         }
 
         return true;
